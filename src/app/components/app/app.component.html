@@ -1,0 +1,10 @@
+<app-menu></app-menu>
+<div [ngSwitch]="compDaCaricare">
+    <app-visualizza *ngSwitchCase="'visualizza'"></app-visualizza>
+    <app-ricerca-risultati *ngSwitchCase="'ricerca-risultati'">
+    </app-ricerca-risultati>
+    <app-cerca *ngSwitchCase="'cerca'"></app-cerca>
+    <app-riepilogo *ngSwitchCase="'riepilogo'"></app-riepilogo>
+    <app-edit *ngSwitchCase="'edit'"></app-edit>
+    <p *ngSwitchDefault>Componente non trovato: {{compDaCaricare}}</p>
+</div>

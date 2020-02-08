@@ -1,0 +1,19 @@
+<h1>Riepilogo</h1>
+<table>
+    <thead>
+        <tr style="background-color:lightgreen">
+            <td>Titolo</td>
+            <td>Sottotitolo</td>
+            <td>Testo</td>
+            <td>Data</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let articolo of arrayArticoli">
+            <td>{{articolo.getTitoloLight()}}</td>
+            <td>{{articolo.getSottotitoloLight()}}</td>
+            <td>{{articolo.getTestoLight()}}</td>
+            <td>{{articolo.getDataPubblicazioneLight() | date: 'dd/MM/yyyy'}}</td>
+        </tr>
+    </tbody>
+</table>

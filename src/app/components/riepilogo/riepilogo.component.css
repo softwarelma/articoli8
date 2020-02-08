@@ -1,0 +1,9 @@
+table, td {
+    border: 1px solid black;
+}
+tr:nth-child(odd) {
+    background-color: lightcoral;
+}
+tr:nth-child(even) {
+    background-color: lightblue;
+}

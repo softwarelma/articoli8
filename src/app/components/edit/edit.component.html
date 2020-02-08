@@ -1,0 +1,15 @@
+<h1>{{inserimentoModifica}}</h1>
+<input type="text" name="titolo" placeholder="titolo" [(ngModel)]="titoloModel">
+<br />
+<input (change)="caricaImmagine($event)" type="file">
+<div *ngIf="urlImmagine; else senzaImmagine">
+    <img src="{{urlImmagine}}" height="200">
+</div>
+<ng-template #senzaImmagine>
+    <br />
+</ng-template>
+<input type="text" name="sottotitolo" placeholder="sottotitolo">
+<br />
+<textarea rows="4" cols="50" name="testo" placeholder="testo"></textarea>
+<br />
+<button (click)="salva()">{{inserisciSalvaModifiche}}</button>

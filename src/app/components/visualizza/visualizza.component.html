@@ -1,0 +1,14 @@
+<p align="center" [ngStyle]="stileTitolo">{{articolo.titolo}}</p>
+<p align="center"><img width="300" src="{{articolo.immagine}}"></p>
+<div *ngFor="let sottotitolo of articolo.arraySottotitolo">
+    <p align="right" *ngIf="sottotitolo.toUpperCase().includes('FONTE:'); else
+sottotitoloUpper">{{sottotitolo}}</p>
+    <ng-template #sottotitoloUpper>
+        <p align="center" [ngClass]="classeSottotitolo">{{sottotitolo | uppercase}}</p>
+    </ng-template>
+</div>
+<p align="right">Lunghezza articolo: {{articolo.testo.length / 7 | number: '0.0-0'}}
+    parole</p>
+<p [innerHTML]="articolo.testo | pipeTestoBr"></p>
+<p align="right">Pubblicato il {{articolo.dataPubblicazione | date: 'dd/MM/yyyy
+HH:mm:ss'}}</p>
