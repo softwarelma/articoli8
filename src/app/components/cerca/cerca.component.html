@@ -1,2 +1,2 @@
-<app-ricerca-risultati></app-ricerca-risultati>
-<app-visualizza></app-visualizza>
+<app-ricerca-risultati (articoloSelezionato)="visualizzaArticolo($event)"></app-ricerca-risultati>
+<app-visualizza [articolo]="articolo"><hr></app-visualizza>

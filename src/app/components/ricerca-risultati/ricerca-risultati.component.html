@@ -2,6 +2,8 @@
 <input type="text" name="ricerca" placeholder="cerca tra gli articoli" [(ngModel)]="ricercaModel"
     (ngModelChange)="cerca()">
 <ul>
-    <li>risultato 1</li>
-    <li>risultato 2</li>
+    <li *ngFor="let articolo of arrayArticoliFiltrati" (click)="selezionaArticolo(articolo)">
+        <h3 style="margin: 0;">{{articolo.titolo}}</h3>
+        <h5 style="margin: 0;">{{articolo.arraySottotitolo[1]}}</h5>
+    </li>
 </ul>

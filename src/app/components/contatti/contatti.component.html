@@ -1,0 +1,51 @@
+<form #formContatti="ngForm" (ngSubmit)="submitFormContatti(formContatti)">
+    <h1>Contatti</h1>
+    <!--Sezione text input nome-->
+    <label for="nome">Nome&nbsp;</label>
+    <input type="text" name="nome" placeholder="nome completo" [ngModel] required>
+    <label for="nome">*</label>
+    <br /><br />
+    <!--Sezione radio sesso-->
+    <label><b>Sesso&nbsp;</b></label>
+    <div *ngFor="let sesso of arraySesso">
+        <input type="radio" name="sesso" [ngModel] value="{{sesso.valore}}" required>
+        <label>{{sesso.descrizione}}</label>
+    </div>
+    <br />
+    <!--Sezione combo fonte-->
+    <label for="fonte">Indicaci come ci hai conosciuto&nbsp;</label>
+    <select name="fonte" [ngModel] required #fonte>
+        <option *ngFor="let fonte of arrayFonte" value="{{fonte.valore}}">{{fonte.descrizione}}</option>
+    </select>
+    <label for="fonte">*</label>
+    <br /><br />
+    <!--Sezione checkbox capitoli-->
+    <label><b>Scegli i capitoli che ti son piaciuti</b></label><br />
+    <input type="checkbox" name="capitoloIntroduzione" [ngModel]>
+    <label for="capitoloIntroduzione">Introduzione</label><br />
+    <input type="checkbox" name="capitoloStruttura" [ngModel]>
+    <label for="capitoloStruttura">Struttura</label><br />
+    <input type="checkbox" name="capitoloView" [ngModel]>
+    <label for="capitoloView">View</label><br />
+    <input type="checkbox" name="capitoloModel" [ngModel]>
+    <label for="capitoloModel">Model</label><br />
+    <input type="checkbox" name="capitoloInterazione" [ngModel]>
+    <label for="capitoloInterazione">Interazione</label><br />
+    <input type="checkbox" name="capitoloNavigazione" [ngModel]>
+    <label for="capitoloNavigazione">Navigazione</label><br />
+    <input type="checkbox" name="capitoloHttp" [ngModel]>
+    <label for="capitoloHttp">Http</label><br />
+    <input type="checkbox" name="capitoloForm" [ngModel]>
+    <label for="capitoloForm">Form</label><br />
+    <br />
+    <!--Sezione text area commento-->
+    <label for="commento">Commento</label>
+    <label for="commento">*</label><br />
+    <textarea rows="4" cols="50" name="commento" placeholder="da 10 a 50 caratteri" minlength="10" maxlength="50"
+        [ngModel] required></textarea>
+    <br /><br />
+    <!--Sezione tasti invia e pulisci-->
+    <button type="submit" [disabled]="!formContatti.form.valid || fonte.value ===
+'seleziona'">Invia</button>
+    &nbsp;<button type="reset" id="bottoneReset">Pulisci</button>
+</form>

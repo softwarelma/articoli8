@@ -1,11 +1,15 @@
 import { ArticoloLight } from '../interfaces/articolo-light';
 
 export class Articolo implements ArticoloLight {
+
+    id: number;
     titolo: string;
     immagine: string;
+    nomeImmagine: string;
     arraySottotitolo: Array<string>;
     testo: string;
     dataPubblicazione: Date;
+
     getTitoloLight(): string {
         return this.titolo.substring(0, 4);
     }

@@ -10,10 +10,12 @@
     </thead>
     <tbody>
         <tr *ngFor="let articolo of arrayArticoli">
-            <td>{{articolo.getTitoloLight()}}</td>
-            <td>{{articolo.getSottotitoloLight()}}</td>
-            <td>{{articolo.getTestoLight()}}</td>
-            <td>{{articolo.getDataPubblicazioneLight() | date: 'dd/MM/yyyy'}}</td>
+            <td (click)="visualizzaArticolo(articolo)">{{articolo.getTitoloLight()}}</td>
+            <td (click)="visualizzaArticolo(articolo)">{{articolo.getSottotitoloLight()}}</td>
+            <td (click)="visualizzaArticolo(articolo)">{{articolo.getTestoLight()}}</td>
+            <td (click)="visualizzaArticolo(articolo)">
+                {{articolo.getDataPubblicazioneLight() | date: 'dd/MM/yyyy'}}</td>
+            <td><button (click)="modificaArticolo(articolo)">Modifica</button></td>
         </tr>
     </tbody>
 </table>

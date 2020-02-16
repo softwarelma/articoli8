@@ -1,15 +1,29 @@
 <h1>{{inserimentoModifica}}</h1>
-<input type="text" name="titolo" placeholder="titolo" [(ngModel)]="titoloModel">
-<br />
-<input (change)="caricaImmagine($event)" type="file">
-<div *ngIf="urlImmagine; else senzaImmagine">
-    <img src="{{urlImmagine}}" height="200">
-</div>
-<ng-template #senzaImmagine>
+<fieldset>
+    <legend>Titolo</legend>
+    <input type="text" name="titolo" placeholder="titolo" [(ngModel)]="titoloModel">
     <br />
-</ng-template>
-<input type="text" name="sottotitolo" placeholder="sottotitolo">
-<br />
-<textarea rows="4" cols="50" name="testo" placeholder="testo"></textarea>
-<br />
+    <div *ngIf="titoloModel"><label>{{titoloModel}}</label></div>
+</fieldset>
+<fieldset>
+    <legend>Immagine</legend>
+    <input (change)="caricaImmagine($event)" type="file">
+    <div *ngIf="urlImmagine; else senzaImmagine">
+        <img src="{{urlImmagine}}" height="200"><br /><label>{{nomeImmagine}}</label>
+    </div>
+    <ng-template #senzaImmagine><br /></ng-template>
+</fieldset>
+<fieldset>
+    <legend>Sottotitolo</legend>
+    <input type="text" name="sottotitolo" placeholder="sottotitolo" [(ngModel)]="sottotitoloModel">
+    <button (click)="aggiungiSottotitolo()">Aggiungi sottotitolo</button>
+    <br />
+    <div *ngFor="let sottotit of arraySottotitolo"><label>{{sottotit}}</label></div>
+</fieldset>
+<fieldset>
+    <legend>Testo</legend>
+    <textarea rows="4" cols="50" name="testo" placeholder="testo" [(ngModel)]="testoModel"></textarea>
+    <br />
+    <div *ngIf="testoModel"><label [innerHTML]="testoModel | pipeTestoBr"></label></div>
+</fieldset>
 <button (click)="salva()">{{inserisciSalvaModifiche}}</button>

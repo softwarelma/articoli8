@@ -10,6 +10,9 @@ import { RiepilogoComponent } from './components/riepilogo/riepilogo.component';
 import { EditComponent } from './components/edit/edit.component';
 import { PipeTestoBrPipe } from './pipes/pipe-testo-br.pipe';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { ContattiComponent } from './components/contatti/contatti.component';
 
 @NgModule({
   declarations: [
@@ -20,11 +23,29 @@ import { FormsModule } from '@angular/forms';
     CercaComponent,
     RiepilogoComponent,
     EditComponent,
-    PipeTestoBrPipe
+    PipeTestoBrPipe,
+    ContattiComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    RouterModule.forRoot([
+      { path: '', component: VisualizzaComponent },
+      { path: 'visualizza', component: VisualizzaComponent },
+      { path: 'visualizza/:id', component: VisualizzaComponent },
+      { path: 'view', redirectTo: '', pathMatch: 'full' },
+      { path: 'cerca', component: CercaComponent },
+      { path: 'search', redirectTo: 'cerca', pathMatch: 'full' },
+      { path: 'riepilogo', component: RiepilogoComponent },
+      { path: 'inserimento', component: EditComponent },
+      { path: 'add', redirectTo: '/inserimento', pathMatch: 'full' },
+      { path: 'insert', redirectTo: '/inserimento', pathMatch: 'full' },
+      { path: 'modifica', component: EditComponent },
+      { path: 'modifica/:id', component: EditComponent },
+      { path: 'contatti', component: ContattiComponent },
+      { path: 'contacts', redirectTo: 'contatti', pathMatch: 'full' },
+      { path: '**', component: VisualizzaComponent }])
   ],
   providers: [],
   bootstrap: [AppComponent]

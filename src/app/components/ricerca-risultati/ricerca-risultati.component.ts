@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FiltroArticoloType } from 'src/app/types/filtro-articolo.type';
+import { ArticoloDaoService } from 'src/app/services/articolo-dao.service';
+import { Articolo } from 'src/app/classes/articolo';
 
 @Component({
   selector: 'app-ricerca-risultati',
@@ -8,17 +10,21 @@ import { FiltroArticoloType } from 'src/app/types/filtro-articolo.type';
 })
 export class RicercaRisultatiComponent implements OnInit {
 
+  @Output() articoloSelezionato: EventEmitter<Articolo> = new EventEmitter<Articolo>();
   _ricercaModel: string;
+  articoloDao: ArticoloDaoService;
+  arrayArticoliFiltrati: Array<Articolo>;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private dao: ArticoloDaoService) {
+    this.articoloDao = dao;
   }
 
+  ngOnInit() { }
+
   cerca() {
-    let filtro: FiltroArticoloType = { testo: this._ricercaModel };
-    // alert('filtro=' + filtro.testo);
-    console.log('filtro=' + filtro.testo);
+    const filtro: FiltroArticoloType = { testo: this._ricercaModel };
+    this.arrayArticoliFiltrati =
+      this.articoloDao.getArrayArticoliFiltrati(filtro);
   }
 
   get ricercaModel(): string {
@@ -27,6 +33,11 @@ export class RicercaRisultatiComponent implements OnInit {
 
   set ricercaModel(valore: string) {
     this._ricercaModel = valore;
+  }
+
+  selezionaArticolo(articolo: Articolo) {
+    console.log(articolo.titolo);
+    this.articoloSelezionato.emit(articolo);
   }
 
 }
